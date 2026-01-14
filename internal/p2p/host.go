@@ -9,7 +9,7 @@ import (
 )
 
 func CreateHost(PORT_HOST string)(host.Host,string,error){
-	PORT:="/ip4/127.0.0.1/tcp/"+PORT_HOST
+	PORT:="/ip4/0.0.0.0/tcp/"+PORT_HOST
 	h,err:=libp2p.New(
 		libp2p.ListenAddrStrings(
 			PORT,
