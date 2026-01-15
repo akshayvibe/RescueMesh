@@ -4,13 +4,7 @@
 
 When traditional networks fail, RescueMesh allows any group of devices (rescue teams or civilians) to communicate as long as they are connected to the same local network via Wi-Fi, a mobile hotspot, or Ethernet LAN.
 
----
 
-## 📺 Demo Video
-
-[Click to watch the demo](https://github.com/user-attachments/assets/7940c3cd-d245-44ee-961d-6ce7953df8fa)
-
----
 
 ## ❓ Why RescueMesh?
 
@@ -52,7 +46,7 @@ cd frontend
 npm install
 npm run dev
 ```
-### 2.Step to Start the Backend 
+### 2. Step to Start the Backend 
 * ## Navigate to the library
 ```bash 
 cd RescueMesh
@@ -63,13 +57,14 @@ cd RescueMesh
 * `--nick` —Your display name visible to other peers.
 * `--room` —The name of the chat room (must be the same for all peers in a group).
 * ## Run command in another terminal/device connceted together via Wifi/Ethernet LAN to create another peer.
-* * # PORT A:
+* * PORT A:
  ```bash
   go run main.go --port 9000 --same_string xyz --room myroom --nick Akshay
 ```
-* * # PORT B:
+* * PORT B:
  ```bash
   go run main.go --port 9001 --same_string xyz --room myroom --nick Aryan
 ```
 
+---
 
