@@ -43,12 +43,12 @@ To find other devices without an internet connection, RescueMesh uses **Multicas
 ```bash 
 cd RescueMesh
 ```
-* ## Info about the Flags
+* # Info about the Flags
 * `--Port` — The port where your host runs..
 * `--same_string` — Used by MDNS to discover peers; this must be the same among peers wanting to connect.
 * `--nick` —Your display name visible to other peers.
 * `--room` —The name of the chat room (must be the same for all peers in a group).
-* ## Run command in another terminal/device connceted together via Wifi/Ethernet LAN to create another peer.
+* # Run command in another terminal/device connceted together via Wifi/Ethernet LAN to create another peer.
   
 * PORT A:
  ```bash
