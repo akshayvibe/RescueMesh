@@ -32,21 +32,13 @@ To find other devices without an internet connection, RescueMesh uses **Multicas
 * `📂 /internal/p2p/host.go` — Network host initialization.
 * `📂 /internal/p2p/mdns.go` — mDNS discovery implementation.
 * `📂 /internal/p2p/pubsub.go` — PubSub (GossipSub) implementation for the chat rooms.
-* `📂 /frontend` — React-based Graphical User Interface.
 
 ---
 
 
 ## 🚀 Installation & Usage
 
-### 1. Start the Frontend
-Navigate to the frontend directory:
-```bash
-cd frontend
-npm install
-npm run dev
-```
-### 2. Step to Start the Backend 
+### Step to Start the Backend 
 * ## Navigate to the library
 ```bash 
 cd RescueMesh
@@ -57,11 +49,12 @@ cd RescueMesh
 * `--nick` —Your display name visible to other peers.
 * `--room` —The name of the chat room (must be the same for all peers in a group).
 * ## Run command in another terminal/device connceted together via Wifi/Ethernet LAN to create another peer.
-* * PORT A:
+  
+* PORT A:
  ```bash
   go run main.go --port 9000 --same_string xyz --room myroom --nick Akshay
 ```
-* * PORT B:
+* PORT B:
  ```bash
   go run main.go --port 9001 --same_string xyz --room myroom --nick Aryan
 ```
