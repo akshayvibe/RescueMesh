@@ -44,7 +44,7 @@ func StoreMessage(message string) {
 	defer messagemu.Unlock()
 	messageArr = append(messageArr, message)
 }
-
+//optional web version
 func GetMessage(w http.ResponseWriter, r *http.Request) {
 	enableCORS(w)
 	if r.Method == http.MethodOptions {
@@ -70,7 +70,7 @@ func PostMessage(w http.ResponseWriter, r *http.Request){
 		http.Error(w, "Only POST Method supported", http.StatusBadRequest)
 		return
 
-	}
+	}	
 	var msg_post IncomingMsg
 	err:=json.NewDecoder(r.Body).Decode(&msg_post)
 	if err != nil || msg_post.Message == "" {
@@ -100,7 +100,10 @@ func main() {
 	// peerAddr := flag.String("peer-address", "", "peer address")
 	sameNetworkString := flag.String("same_string", "", "same_string")
 
+	//create host->add it to the gossippubsub->peer discovery through MDNS
+
 	flag.Parse()
+	//creating a new P2P node
 	h, _, err1 := p2p.CreateHost(*port)
 
 	if err1 != nil {
@@ -113,12 +116,17 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	//finding peer or peer discovery through mdns in same networksetting
 	peerChan := p2p.InitMDNS(h, *sameNetworkString)
-
+	
+//!SECTION Peer discovery and peer connection 
+//this fucntion will constantly look for for peer and will send it to the peer through peer channel
 	go func() {
 
 		for {
+			//next connection or other connection getting recieved
 			peer := <-peerChan // will block until we discover a peer
+			//avoiding duplicacy of connection through this as we don't need both of the sides to get connected together 
 			if peer.ID > h.ID() {
 				// if other end peer id greater than us, don't connect to it, just wait for it to connect us
 				fmt.Println("Found peer:", peer, " id is greater than us, wait for it to connect to us")
@@ -164,7 +172,8 @@ func main() {
 	}
 
 	room := *roomFlag
-
+	//remember here we have handled the multiple peer connection request concurrently through go routine func
+	//once peer connected join chat room
 	// join the chat room
 	cr, err = p2p.JoinChatRoom(ctx, ps, h.ID(), nick, room)
 	if err != nil {
@@ -189,6 +198,7 @@ func main() {
 	if err != nil {
 		log.Fatal("error opening logs.txt")
 	}
+	
 	// Read incoming messages
 	go func() {
 		for msg := range cr.Messages {
